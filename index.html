@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6557e8"><meta name="description" content="Grow Up — Personal Growth Dashboard">
+<title>Grow Up — Become Better, Every Day</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <a class="brand" href="#" aria-label="Grow Up Beranda"><span class="brand-logo">✦</span><span><b>GROW UP</b><small>PERSONAL GROWTH</small></span></a>
+  <div class="top-actions"><button id="themeToggle" class="icon-btn" aria-label="Ganti tema">☾</button><button id="profileShortcut" class="avatar" aria-label="Profil">R</button></div>
+</header>
+
+<main>
+<section id="view-home" class="view active">
+  <div class="hero">
+    <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+    <div class="hero-content">
+      <div class="eyebrow light">SENIN KECIL, PERUBAHAN BESAR</div>
+      <p id="greeting" class="greeting">Selamat datang kembali ✨</p>
+      <h1>Jadi lebih baik,<br><span>setiap harinya.</span></h1>
+      <p class="hero-sub" id="heroDate">Hari ini adalah kesempatan baru untuk bertumbuh.</p>
+      <div class="hero-bottom"><span class="streak-chip">✦ <b id="streakCount">0</b> hari konsisten</span><button id="jumpToday" class="hero-link">Lihat target hari ini <span>↗</span></button></div>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="art-ring ring-a"></div><div class="art-ring ring-b"></div><div class="art-spark">✦</div><div class="art-leaf">↗</div></div>
+  </div>
+
+  <div class="section-head"><div><div class="eyebrow">YOUR DAILY JOURNEY</div><h2>Ringkasan hari ini</h2></div><button class="date-chip" id="dateChip">Hari ini ▾</button></div>
+  <input type="date" id="datePicker" class="visually-hidden-date" aria-label="Pilih tanggal">
+  <div class="overview-grid">
+    <article class="progress-card">
+      <div class="card-topline"><span class="card-label">PROGRES HARIAN</span><span class="live-dot"></span></div>
+      <div class="ring-wrap"><svg class="progress-ring" viewBox="0 0 140 140" aria-label="Persentase progres"><circle class="ring-bg" cx="70" cy="70" r="58"></circle><circle id="ringProgress" class="ring-value" cx="70" cy="70" r="58"></circle></svg><div class="ring-center"><strong id="todayPercent">0%</strong><span>selesai</span></div></div>
+      <div class="ring-caption"><b id="doneCount">0 dari 0</b><span>target diselesaikan</span></div>
+    </article>
+    <article class="mini-stat-card lavender"><div class="stat-icon">✎</div><div class="stat-title">Catatan hari ini</div><strong id="noteStatus">Mulai menulis</strong><span class="stat-caption">Satu ide bisa berarti banyak.</span><button class="small-link" data-go="journal">Buka jurnal ↗</button></article>
+    <article class="mini-stat-card mint"><div class="stat-icon">↗</div><div class="stat-title">Rata-rata 7 hari</div><strong id="weekAverage">0%</strong><span class="stat-caption">Jaga ritme, bukan kesempurnaan.</span><button class="small-link" data-go="stats">Lihat statistik ↗</button></article>
+  </div>
+
+  <div class="section-head section-spaced"><div><div class="eyebrow">MAKE IT COUNT</div><h2>Target harian</h2><p class="section-desc">Pilih tanggal dan selesaikan satu per satu.</p></div></div>
+  <div id="dayTabs" class="day-tabs"></div>
+  <section id="dayCard" class="daily-panel">
+    <div class="daily-panel-head"><div><span class="day-label">DAILY CHECKLIST</span><h3 id="dayName">Senin</h3><p id="daySubtitle">Mulai dengan fokus.</p></div><div class="day-pct-bubble" id="dayPercent">0%</div></div>
+    <div class="thin-progress"><span id="dayBar"></span></div>
+    <div id="taskList" class="task-list"></div>
+    <div class="panel-footer"><span id="taskCount">0 dari 0 kegiatan selesai</span><button id="resetDay" class="reset-link">Reset checklist ↻</button></div>
+  </section>
+  <section class="quote-banner"><span class="quote-mark">“</span><div><p id="dailyQuote">Konsistensi mengalahkan motivasi yang datang sesekali.</p><small>GROW UP DAILY REMINDER</small></div><span class="quote-star">✦</span></section>
+</section>
+
+<section id="view-stats" class="view">
+  <div class="page-intro"><div class="eyebrow">MEASURE YOUR GROWTH</div><h1>Perkembanganmu<span>.</span></h1><p>Rayakan progres kecil yang kamu bangun setiap hari.</p></div>
+  <div class="stats-summary-grid"><article class="stats-tile"><span>RATA-RATA PROGRES</span><strong id="historyAverage">0%</strong><small>Dalam rentang terpilih</small></article><article class="stats-tile"><span>TUGAS TUNTAS</span><strong id="historyDone">0</strong><small>Kegiatan diselesaikan</small></article><article class="stats-tile"><span>HARI 100%</span><strong id="perfectDays">0</strong><small>Semua target selesai</small></article></div>
+  <div class="chart-card"><div class="section-head"><div><div class="eyebrow">CONSISTENCY</div><h2>Grafik progres</h2></div><select id="historyRange" aria-label="Rentang statistik"><option value="7">7 hari</option><option value="30">30 hari</option></select></div><div id="chart" class="bar-chart"></div><div class="chart-legend"><span><i></i> Persentase kegiatan selesai</span></div></div>
+  <div class="section-head section-spaced"><div><div class="eyebrow">KEEP GOING</div><h2>Riwayat harian</h2></div></div><div id="historyList" class="history-list premium-history"></div>
+  <div class="achievement-section"><div class="section-head"><div><div class="eyebrow">MILESTONES</div><h2>Pencapaianmu</h2></div></div><div id="badges" class="badges-grid"></div></div>
+</section>
+
+<section id="view-journal" class="view">
+  <div class="page-intro journal-intro"><div class="eyebrow">THINK · REFLECT · GROW</div><h1>Ruang <span>refleksi.</span></h1><p>Catat pelajaran, ide tulisan, dan hal yang ingin kamu perbaiki.</p></div>
+  <div class="journal-date-row"><label for="journalDate">Tanggal catatan</label><input type="date" id="journalDate"></div>
+  <article class="journal-editor">
+    <div class="journal-paper-top"><span class="paper-icon">✎</span><span>MY PRIVATE NOTES</span><span id="journalSaved" class="saved-pill">● Tersimpan</span></div>
+    <label for="journalText" class="editor-label">Apa yang kamu pelajari hari ini?</label>
+    <textarea id="journalText" maxlength="4000" rows="9" placeholder="Mulai dengan satu kalimat. Apa hal paling bermakna yang kamu pelajari hari ini?"></textarea>
+    <div class="journal-prompts"><span>✧ Ide refleksi</span><button data-prompt="Hari ini saya belajar bahwa...">Pelajaran hari ini</button><button data-prompt="Ide artikel yang ingin saya kembangkan: ...">Ide artikel</button><button data-prompt="Besok saya ingin memperbaiki...">Perbaikan besok</button></div>
+    <div class="editor-footer"><span id="charCount">0/4000 karakter</span><span>Disimpan otomatis di perangkat ini</span></div>
+  </article>
+  <div class="journal-tip"><span>✦</span><div><b>Tak perlu menulis sempurna.</b><p>Jurnal yang konsisten membantumu melihat pertumbuhan yang kadang sulit disadari.</p></div></div>
+</section>
+
+<section id="view-profile" class="view">
+  <div class="page-intro"><div class="eyebrow">YOUR GROWTH SPACE</div><h1>Ruang <span>pribadi.</span></h1><p>Atur pengalaman Grow Up sesuai kebiasaanmu.</p></div>
+  <article class="profile-card"><div class="profile-avatar-large" id="profileInitial">R</div><div><div class="eyebrow light-purple">YOUR PERSONAL DASHBOARD</div><h2 id="profileHeading">Perjalanan bertumbuh</h2><p>Fokus pada proses. Hargai setiap langkah.</p></div></article>
+  <div class="section-head section-spaced"><div><div class="eyebrow">PERSONALIZE YOUR SPACE</div><h2>Kustomisasi Grow Up</h2><p class="section-desc">Ubah nama, warna, dan kegiatan sesuai kebutuhanmu.</p></div></div>
+  <article class="custom-panel">
+    <div class="custom-grid">
+      <label class="custom-field">Nama tampilan<input id="displayName" maxlength="32" placeholder="Nama panggilan"></label>
+      <label class="custom-field">Warna utama<div class="color-control"><input type="color" id="accentColor" value="#6557e8"><span>Pilih warna tema</span></div></label>
+    </div>
+    <div class="custom-divider"></div>
+    <div class="custom-title-row"><div><b>Editor jadwal kegiatan</b><p>Tambah, ubah, atau hapus kegiatan pada setiap hari.</p></div><label class="custom-field compact-field">Pilih hari<select id="editDay"><option value="1">Senin</option><option value="2">Selasa</option><option value="3">Rabu</option><option value="4">Kamis</option><option value="5">Jumat</option><option value="6">Sabtu</option><option value="0">Minggu</option></select></label></div>
+    <div id="customTaskEditor" class="custom-task-editor"></div>
+    <form id="addTaskForm" class="add-task-form"><input id="newTaskEmoji" maxlength="4" value="✦" aria-label="Ikon kegiatan"><input id="newTaskName" maxlength="70" required placeholder="Nama kegiatan baru"><input id="newTaskNote" maxlength="80" placeholder="Catatan / target (opsional)"><button class="primary-button" type="submit">+ Tambah</button></form>
+    <p class="custom-hint">Perubahan jadwal berlaku pada hari yang dipilih. Checklist lama tetap tersimpan; jika nama kegiatan diubah, status checklistnya tetap mengikuti kegiatan tersebut.</p>
+  </article>
+  <div class="section-head section-spaced"><div><div class="eyebrow">YOUR ROUTINE</div><h2>Jadwal mingguan</h2></div></div><div id="routineList" class="routine-list"></div>
+  <div class="section-head section-spaced"><div><div class="eyebrow">APP PREFERENCES</div><h2>Pengaturan</h2></div></div>
+  <article class="settings-panel"><div><b>Tema gelap</b><p>Gunakan tampilan gelap untuk suasana yang lebih redup.</p></div><button id="themeToggle2" class="secondary-button">Ganti tema ☾</button></article>
+  <article class="settings-panel"><div><b>Pengingat browser</b><p id="reminderStatus">Notifikasi browser mungkin tidak berjalan ketika aplikasi ditutup.</p><div class="reminder-controls"><input type="time" id="reminderTime" value="20:00" aria-label="Jam pengingat"><button id="reminderBtn" class="secondary-button">Izinkan notifikasi</button></div></div></article>
+  <article class="settings-panel"><div><b>Cadangkan data Grow Up</b><p>Ekspor checklist, jurnal, jadwal kustom, dan preferensi ke file JSON. Impor file tersebut untuk memulihkan data di perangkat lain.</p></div><div class="backup-actions"><button id="exportData" class="secondary-button">Ekspor data</button><label class="secondary-button import-label" for="importFile">Impor data</label><input id="importFile" type="file" accept="application/json,.json" hidden></div></article>
+  <article class="settings-panel danger-panel"><div><b>Reset semua data</b><p>Hapus seluruh checklist dan catatan yang tersimpan di perangkat ini.</p></div><button id="resetAll" class="danger-button">Hapus data</button></article>
+  <p class="privacy-note">Privasi: data disimpan di browser perangkat ini. Untuk memakai data yang sama di HP dan laptop, gunakan Ekspor/Impor sebagai cara manual sementara. Sinkronisasi otomatis memerlukan backend cloud dan konfigurasi akun terpisah.</p>
+</section>
+</main>
+
+<nav class="bottom-nav" aria-label="Navigasi utama"><button class="nav-item active" data-view="home"><span>⌂</span><small>Beranda</small></button><button class="nav-item" data-view="stats"><span>▥</span><small>Statistik</small></button><button class="nav-item nav-journal" data-view="journal"><span>✎</span><small>Jurnal</small></button><button class="nav-item" data-view="profile"><span>◉</span><small>Profil</small></button></nav>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</div>
+</body></html>
